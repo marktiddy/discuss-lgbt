@@ -1,7 +1,7 @@
 export const questions = [
   {
     title: 'General Questions',
-    color: '#ffa52c',
+    color: '#FC6E51',
     questions: [
       'What is your favourite thing about yourself?',
       'If you could tell the whole world one thing, what would it be?',
@@ -34,7 +34,7 @@ export const questions = [
   },
   {
     title: 'Religion and Discrimination',
-    color: '#008018',
+    color: '#A0D468',
     questions: [
       'Do you think people have the right to discriminate against LGBTQIAP+ people on religious grounds?',
       'Do you think it’s right that some religious groups are seen as homophobic/transphobic?',
@@ -62,7 +62,7 @@ export const questions = [
   },
   {
     title: 'Gender and Intersectionality',
-    color: '#86007d',
+    color: '#4FC2E9',
     questions: [
       'Do you think gender is still important?',
       'How important is your gender identity to you?',
@@ -82,7 +82,7 @@ export const questions = [
   },
   {
     title: 'Pride, Allies, Representation and Coming Out',
-    color: '#0000f9',
+    color: '#AC92EB',
     questions: [
       'The pink stripe on the original Rainbow Pride flag represents Sex. What does sex mean to you and why do you think it was included? ',
       'The red stripe on the original Rainbow Pride flag represents Life. What does life mean to you and why do you think it was included? ',

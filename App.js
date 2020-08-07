@@ -10,6 +10,8 @@ import {
   StatusBar,
 } from 'react-native';
 import { AppLoading } from 'expo';
+import * as Linking from 'expo-linking';
+import { AntDesign } from '@expo/vector-icons';
 import {
   useFonts,
   Roboto_300Light,
@@ -32,6 +34,10 @@ const HomeScreen = ({ navigation }) => {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
+
+  const openUrl = (url) => {
+    Linking.openURL(url);
+  };
 
   return (
     <>
@@ -69,6 +75,28 @@ const HomeScreen = ({ navigation }) => {
               </TouchableOpacity>
             );
           })}
+          <View style={styles.sites}>
+            <Text style={styles.siteTitle}>Find Us Online</Text>
+            <TouchableOpacity
+              onPress={() => openUrl('https://www.discusslgbtq.com')}
+            >
+              <Text style={styles.siteLink}>Our Website</Text>
+            </TouchableOpacity>
+            <View style={styles.siteSocial}>
+              <TouchableOpacity
+                onPress={() =>
+                  openUrl('https://www.instagram.com/discusslgbtq/')
+                }
+              >
+                <AntDesign name="instagram" style={styles.siteSocialIcon} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => openUrl('https://twitter.com/discusslgbtq')}
+              >
+                <AntDesign name="twitter" style={styles.siteSocialIcon} />
+              </TouchableOpacity>
+            </View>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -87,7 +115,7 @@ const App = () => {
           options={{
             title: '',
             headerStyle: {
-              backgroundColor: '#86007d',
+              backgroundColor: '#ED5564',
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -117,19 +145,19 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#ebebeb',
-    marginTop: 15,
+    paddingTop: 15,
   },
   scrollview: {
     marginHorizontal: 20,
+    paddingTop: 15,
   },
   titleText: {
     fontSize: 22,
     fontFamily: 'Roboto_500Medium',
-    color: '#86007d',
+    color: '#ED5564',
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -141,8 +169,41 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   chooseText: {
-    color: '#86007d',
+    color: '#ED5564',
     fontFamily: 'Roboto_500Medium',
+  },
+  sites: {
+    backgroundColor: '#ED5564',
+    marginTop: 20,
+    textAlign: 'center',
+    borderRadius: 3,
+    padding: 6,
+  },
+  siteTitle: {
+    color: 'white',
+    textAlign: 'center',
+    fontFamily: 'Roboto_500Medium',
+    fontSize: 16,
+  },
+  siteLink: {
+    color: '#ED5564',
+    textAlign: 'center',
+    fontFamily: 'Roboto_500Medium',
+    fontSize: 14,
+    marginTop: 10,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 5,
+  },
+  siteSocial: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 15,
+  },
+  siteSocialIcon: {
+    color: 'white',
+    fontSize: 35,
   },
 });
 
