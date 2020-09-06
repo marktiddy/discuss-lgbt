@@ -1,5 +1,5 @@
 // import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,7 +11,9 @@ import {
 } from 'react-native';
 import { AppLoading } from 'expo';
 import * as Linking from 'expo-linking';
+import * as SecureStore from 'expo-secure-store';
 import { AntDesign } from '@expo/vector-icons';
+import { Provider } from './Context';
 import {
   useFonts,
   Roboto_300Light,
@@ -21,11 +23,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MenuItem from './Components/menuItem';
 import DiscussionView from './DiscussionView';
+import FavouritesView from './FavouritesView';
 import { questions } from './data/questions';
 
 let topColor = '#86007d';
 
+//NOTE
+//For favourites store them in the context which should also have some functions to update the local storage
+//The context will wrap around everything else
+
 const HomeScreen = ({ navigation }) => {
+  const [favourites, setFavourites] = useState([]);
   let [fontsLoaded] = useFonts({
     Roboto_300Light,
     Roboto_500Medium,
@@ -56,6 +64,10 @@ const HomeScreen = ({ navigation }) => {
             Queer/Questioning, Intersex, Asexual/Aromantic, Pansexual and all
             other queer identities.
           </Text>
+          <Text style={styles.mainText}>
+            As you go through the questions click the star to favourite one and
+            then browse through your favourites using the menu option.
+          </Text>
           <Text style={[styles.mainText, styles.chooseText]}>
             Choose a category from below to get started
           </Text>
@@ -63,7 +75,7 @@ const HomeScreen = ({ navigation }) => {
             return (
               <TouchableOpacity
                 key={q.title}
-                onPress={() => {
+                onPress={(setFavourites) => {
                   navigation.navigate('Discussion', {
                     title: q.title,
                     questions: q.questions,
@@ -75,6 +87,13 @@ const HomeScreen = ({ navigation }) => {
               </TouchableOpacity>
             );
           })}
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Favourites');
+            }}
+          >
+            <MenuItem title="Favourites" color="#ed5564" />
+          </TouchableOpacity>
           <View style={styles.sites}>
             <Text style={styles.siteTitle}>Find Us Online</Text>
             <TouchableOpacity
@@ -107,38 +126,54 @@ const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            title: '',
-            headerStyle: {
-              backgroundColor: '#ED5564',
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="Discussion"
-          component={DiscussionView}
-          options={{
-            title: '',
-            headerStyle: {
-              backgroundColor: topColor,
-            },
-            headerTintColor: '#fff',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={{
+              title: '',
+              headerStyle: {
+                backgroundColor: '#ED5564',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+          <Stack.Screen
+            name="Discussion"
+            component={DiscussionView}
+            options={{
+              title: '',
+              headerStyle: {
+                backgroundColor: topColor,
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+          <Stack.Screen
+            name="Favourites"
+            component={FavouritesView}
+            options={{
+              title: 'Favourite Questions',
+              headerStyle: {
+                backgroundColor: topColor,
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 
