@@ -8,7 +8,6 @@ import {
   StatusBar,
 } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import * as SecureStore from 'expo-secure-store';
 import { Context } from './Context';
 
 const DiscussionView = ({ route, navigation }) => {

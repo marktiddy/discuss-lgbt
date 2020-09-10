@@ -85,7 +85,7 @@ const FavouritesView = ({ navigation }) => {
               ? "That's all your favourite questions"
               : questions[questionNum]}
             {questions.length < 1
-              ? "You haven't favourited any questions yet"
+              ? "You haven't favourited any questions yet. Click the star at the top of a question to favourite it"
               : null}
           </Text>
         </View>

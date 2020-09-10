@@ -24,13 +24,12 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MenuItem from './Components/menuItem';
 import DiscussionView from './DiscussionView';
 import FavouritesView from './FavouritesView';
+import WebViewScreen from './WebViewScreen';
+
+import UsefulInfo from './UsefulInfo';
 import { questions } from './data/questions';
 
 let topColor = '#86007d';
-
-//NOTE
-//For favourites store them in the context which should also have some functions to update the local storage
-//The context will wrap around everything else
 
 const HomeScreen = ({ navigation }) => {
   const [favourites, setFavourites] = useState([]);
@@ -64,12 +63,9 @@ const HomeScreen = ({ navigation }) => {
             Queer/Questioning, Intersex, Asexual/Aromantic, Pansexual and all
             other queer identities.
           </Text>
-          <Text style={styles.mainText}>
-            As you go through the questions click the star to favourite one and
-            then browse through your favourites using the menu option.
-          </Text>
+
           <Text style={[styles.mainText, styles.chooseText]}>
-            Choose a category from below to get started
+            Pick A Question Pack To Start
           </Text>
           {questions.map((q) => {
             return (
@@ -92,30 +88,15 @@ const HomeScreen = ({ navigation }) => {
               navigation.navigate('Favourites');
             }}
           >
-            <MenuItem title="Favourites" color="#ed5564" />
+            <MenuItem title="Your Favourites" color="#ed5564" />
           </TouchableOpacity>
+
           <View style={styles.sites}>
-            <Text style={styles.siteTitle}>Find Us Online</Text>
-            <TouchableOpacity
-              onPress={() => openUrl('https://www.discusslgbtq.com')}
-            >
-              <Text style={styles.siteLink}>Our Website</Text>
+            <TouchableOpacity onPress={() => navigation.navigate('UsefulInfo')}>
+              <Text style={styles.siteTitle}>Useful Websites and Info</Text>
             </TouchableOpacity>
-            <View style={styles.siteSocial}>
-              <TouchableOpacity
-                onPress={() =>
-                  openUrl('https://www.instagram.com/discusslgbtq/')
-                }
-              >
-                <AntDesign name="instagram" style={styles.siteSocialIcon} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => openUrl('https://twitter.com/discusslgbtq')}
-              >
-                <AntDesign name="twitter" style={styles.siteSocialIcon} />
-              </TouchableOpacity>
-            </View>
           </View>
+          <View style={styles.divider}></View>
         </ScrollView>
       </SafeAreaView>
     </>
@@ -164,6 +145,34 @@ const App = () => {
               title: 'Favourite Questions',
               headerStyle: {
                 backgroundColor: topColor,
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+          <Stack.Screen
+            name="UsefulInfo"
+            component={UsefulInfo}
+            options={{
+              title: 'Useful Info',
+              headerStyle: {
+                backgroundColor: '#AC92EB',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontWeight: 'bold',
+              },
+            }}
+          />
+          <Stack.Screen
+            name="WebViewComp"
+            component={WebViewScreen}
+            options={{
+              title: 'Useful Website',
+              headerStyle: {
+                backgroundColor: '#AC92EB',
               },
               headerTintColor: '#fff',
               headerTitleStyle: {
@@ -239,6 +248,9 @@ const styles = StyleSheet.create({
   siteSocialIcon: {
     color: 'white',
     fontSize: 35,
+  },
+  divider: {
+    height: 50,
   },
 });
 
