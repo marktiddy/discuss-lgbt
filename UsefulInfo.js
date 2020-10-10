@@ -38,7 +38,7 @@ const sitesObject = [
   },
   {
     name: 'Switchboard',
-    subtitle: 'Phone info line',
+    subtitle: 'LGBTQ+ Phone info line',
     link: 'http://switchboard.lgbt',
   },
   {
@@ -76,20 +76,30 @@ const UsefulInfo = ({ navigation }) => {
           <View style={styles.sites}>
             <Text style={styles.siteTitle}>Find Us Online</Text>
             <TouchableOpacity
-              onPress={() => openUrl('https://www.discusslgbtq.com')}
+              onPress={() =>
+                navigation.navigate('WebViewComp', {
+                  showUrl: 'https://www.discusslgbtq.com',
+                })
+              }
             >
               <Text style={styles.siteLink}>Our Website</Text>
             </TouchableOpacity>
             <View style={styles.siteSocial}>
               <TouchableOpacity
                 onPress={() =>
-                  openUrl('https://www.instagram.com/discusslgbtq/')
+                  navigation.navigate('WebViewComp', {
+                    showUrl: 'https://www.instagram.com/discusslgbtq',
+                  })
                 }
               >
                 <AntDesign name="instagram" style={styles.siteSocialIcon} />
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={() => openUrl('https://twitter.com/discusslgbtq')}
+                onPress={() =>
+                  navigation.navigate('WebViewComp', {
+                    showUrl: 'https://twitter.com/discusslgbtq',
+                  })
+                }
               >
                 <AntDesign name="twitter" style={styles.siteSocialIcon} />
               </TouchableOpacity>
