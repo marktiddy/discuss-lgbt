@@ -1,6 +1,6 @@
 export const questions = [
   {
-    title: 'General Questions',
+    title: 'Warm Up Questions',
     color: '#FC6E51',
     questions: [
       'What is your favourite thing about yourself?',
@@ -27,7 +27,7 @@ export const questions = [
       'Why might people want to dye their hair?',
       'Do you find it easier to forgive or forget?',
       'Do you think it’s right to cut out of your life people who have hurt you?',
-      'Would you rather walk through the rain to see a beautiful rainbow, or stay dry and miss seeing it?',
+      'Are you the kind of person who will gladly go out in the rain in order to see a rainbow?',
       'Do you think stereotypes are useful?',
       'Do you feel like you fit into any stereotypes?',
     ],
@@ -38,10 +38,10 @@ export const questions = [
     questions: [
       'Do you think people have the right to discriminate against LGBTQIAP+ people on religious grounds?',
       'Do you think it’s right that some religious groups are seen as homophobic/transphobic?',
-      'What do you think God would want to say specifically to LGBTQIAP+ people?',
+      'What do you think God(s) or higher powers would want to say specifically to LGBTQIAP+ people?',
       'Do you think it’s ok that people interpret religious scriptures differently?',
       'Do you think debating different interpretations of religious scriptures is useful?',
-      'What do you think LGBTQIAP+ people can teach others about God?',
+      'What do you think LGBTQIAP+ people can teach others about God(s) or higher powers?',
       'What do you think LGBTQIAP+ people can teach others about spirituality?',
       'What do you think LGBTQIAP+ people can teach others about love?',
       'What do you think LGBTQIAP+ people can teach others about the bible or other religious scriptures?',

@@ -101,7 +101,7 @@ const DiscussionView = ({ route, navigation }) => {
             onPress={() => {
               updateFavourites();
             }}
-            style={styles.favicon}
+            style={styles.faviconContainer}
           >
             <AntDesign name={isFav ? 'star' : 'staro'} style={styles.favicon} />
           </TouchableOpacity>
@@ -161,13 +161,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-  favicon: {
-    color: 'white',
-    fontSize: 32,
+  faviconContainer: {
     position: 'absolute',
     top: 0,
     right: 0,
-
+  },
+  favicon: {
+    color: 'white',
+    fontSize: 32,
+    zIndex: 99,
     padding: 10,
   },
 });
